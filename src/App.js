@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
+import "./style.css";
+import useBooksContext from "./hooks/book-context-hook";
 
-function App() {
+const App = () => {
+  const { fetchBooks } = useBooksContext();
+  useEffect(() => {
+    fetchBooks();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BookList />
+      <BookCreate />
     </div>
   );
-}
+};
 
 export default App;
